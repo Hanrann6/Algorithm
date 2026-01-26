@@ -26,22 +26,20 @@ num = [[111, 123, 135, 147, 159],
 
        '''
 
-import sys
-n = sys.stdin.readline()
-int_n = int(n)
+n = int(input())
 
-if(int_n < 100):
-    ans=n
-elif(int_n==1000):
-    ans=144
-else:
-    ans=99
-    for i in range(101, int_n+1):
-        num = str(i)
-        a, b, c = int(num[0]), int(num[1]), int(num[2])
-        if(c-b == b-a):
+if n < 100: # 2자리 수 이하
+    ans = n
+elif n == 1000:
+    ans = 144
+else: # 3자리수
+    ans = 99
+    for i in range(100, n+1):
+        a = i // 100 # 백의자리 수
+        b = i // 10 - a * 10 # 십의자리 수
+        c = i % 10 # 일의자리 수
+        if(a-b == b-c): # 등차수열이면
             ans += 1
 
 print(ans)
-#문제 없는데 왜틀렸지!!!!
 #for문의 range에서 int(n)+1으로 하면 개행문자 오류? 로 런타임 에러
